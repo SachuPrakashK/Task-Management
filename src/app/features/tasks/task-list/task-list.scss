@@ -120,7 +120,15 @@ footer {
 }
 
 .deadline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
     font-family: var(--font-mono);
     font-size: 0.75rem;
     color: var(--text-muted);
+
+    .calendar-icon {
+        width: 1rem;
+        height: 1rem;
+    }
 }

@@ -7,7 +7,6 @@
 @if (!taskService.loaded()) {
   <app-spinner label="Loading tasks…" />
 } @else {
-
   @if (filteredTasks().length === 0) {
     <app-empty-state message="No tasks match your filters yet." />
   } @else {
@@ -18,12 +17,17 @@
             <a class="card-link" [routerLink]="['/tasks', task.id]">
               <header>
                 <h3>{{ task.title }}</h3>
-                <span class="status-chip" [class]="statusClass(task.status)">{{ task.status }}</span>
+                <span class="status-chip" [class]="statusClass(task.status)">{{
+                  task.status
+                }}</span>
               </header>
               <p class="description">{{ task.description | stripHtml }}</p>
             </a>
             <footer>
-              <span class="deadline">{{ task.deadline }}</span>
+              <span class="deadline">
+                <img class="calendar-icon" src="/images/calendar-circle.svg" alt="Deadline" />
+                {{ task.deadline }}
+              </span>
             </footer>
           </div>
         </app-card>
