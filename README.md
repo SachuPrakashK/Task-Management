@@ -148,7 +148,7 @@ clears the bad entry and reports it via the snackbar instead of leaving each
 store to reinvent that handling, and callers fall back to the
 `assets/tasks.json` seed automatically.
 
-Storage keys, the (currently empty) API base URL, and a feature flag live in
+Storage keys and a feature flag live in
 `src/environments/environment.ts`, swapped for `environment.production.ts`
 on a production build via `angular.json`'s `fileReplacements` — so nothing
 about *where* data lives is hardcoded in the services themselves.
