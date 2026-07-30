@@ -1,0 +1,11 @@
+<div class="snackbar-stack" aria-live="polite">
+  @for (message of snackbarService.messages(); track message.id) {
+    <div class="snackbar-toast" [class]="message.type">
+      <span class="icon">{{ iconFor(message.type) }}</span>
+      <span class="text">{{ message.text }}</span>
+      <button type="button" class="dismiss" (click)="snackbarService.dismiss(message.id)" aria-label="Dismiss">
+        ×
+      </button>
+    </div>
+  }
+</div>

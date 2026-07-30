@@ -1,4 +1,8 @@
-export type TaskStatus = 'Pending' | 'In Progress' | 'Completed';
+export enum TaskStatus {
+  Pending = 'Pending',
+  InProgress = 'In Progress',
+  Completed = 'Completed',
+}
 
 export interface Task {
   id: string;
@@ -10,4 +14,8 @@ export interface Task {
 
 export type TaskFormValue = Omit<Task, 'id'>;
 
-export const TASK_STATUSES: TaskStatus[] = ['Pending', 'In Progress', 'Completed'];
+export const TASK_STATUSES: TaskStatus[] = [
+  TaskStatus.Pending,
+  TaskStatus.InProgress,
+  TaskStatus.Completed,
+];

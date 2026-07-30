@@ -1,0 +1,9 @@
+<div class="spinner-container" [class]="'size-' + size" [class.inline]="inline">
+  <svg class="spinner-ring" viewBox="0 0 50 50">
+    <circle class="track" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+    <circle class="arc" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+  </svg>
+  @if (label) {
+    <span class="spinner-label">{{ label }}</span>
+  }
+</div>

@@ -1,0 +1,87 @@
+:host {
+    display: contents;
+}
+
+.snackbar-stack {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    max-width: 340px;
+}
+
+.snackbar-toast {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.7rem 0.8rem;
+    border-radius: 10px;
+    background: var(--text);
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(28, 33, 48, 0.25);
+    font-size: 0.85rem;
+    animation: toast-in 0.18s ease-out;
+
+    .icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        font-size: 0.7rem;
+        font-weight: 700;
+        flex-shrink: 0;
+    }
+
+    .text {
+        flex: 1;
+        line-height: 1.4;
+    }
+
+    .dismiss {
+        background: none;
+        border: none;
+        color: inherit;
+        opacity: 0.7;
+        font-size: 1rem;
+        line-height: 1;
+        padding: 0;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    &.success .icon {
+        background: var(--status-completed);
+    }
+    &.error .icon {
+        background: var(--danger);
+    }
+    &.info .icon {
+        background: var(--status-progress);
+    }
+}
+
+@keyframes toast-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .snackbar-stack {
+        left: 1rem;
+        right: 1rem;
+        max-width: none;
+    }
+}

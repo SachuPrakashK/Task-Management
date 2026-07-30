@@ -2,6 +2,8 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, of, tap } from 'rxjs';
 import { Task, TaskFormValue } from '../models/task.model';
+import { StorageService } from '../../shared/services/storage';
+import { SnackbarService } from '../../shared/services/snackbar';
 
 const STORAGE_KEY = 'task-management:tasks';
 
@@ -10,6 +12,8 @@ const STORAGE_KEY = 'task-management:tasks';
 })
 export class TaskService {
   private readonly http = inject(HttpClient);
+  private readonly storage = inject(StorageService);
+  private readonly snackbar = inject(SnackbarService);
 
   private readonly _tasks = signal<Task[]>([]);
   private readonly _loaded = signal(false);
@@ -17,11 +21,13 @@ export class TaskService {
   readonly tasks = this._tasks.asReadonly();
   readonly loaded = this._loaded.asReadonly();
 
-    loadTasks() {
+  readonly taskCount = computed(() => this._tasks().length);
+
+  loadTasks(): void {
     if (this._loaded()) return;
 
-    const stored = this.readStorage();
-    if (stored) {
+    const stored = this.storage.read<Task[]>(STORAGE_KEY);
+    if (stored && Array.isArray(stored)) {
       this._tasks.set(stored);
       this._loaded.set(true);
       return;
@@ -31,9 +37,10 @@ export class TaskService {
       tap((tasks) => {
         this._tasks.set(tasks);
         this._loaded.set(true);
-        this.writeStorage(tasks);
+        this.storage.write(STORAGE_KEY, tasks);
       }),
       catchError(() => {
+        this.snackbar.error('Failed to load tasks. Starting with an empty list.');
         this._tasks.set([]);
         this._loaded.set(true);
         return of(null);

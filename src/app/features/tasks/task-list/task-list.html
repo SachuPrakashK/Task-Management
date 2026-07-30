@@ -1,1 +1,33 @@
-<p>task-list works!</p>
+<section class="list-header">
+  <div>
+    <h1>Tasks</h1>
+  </div>
+</section>
+
+@if (!taskService.loaded()) {
+  <app-spinner label="Loading tasks…" />
+} @else {
+
+  @if (filteredTasks().length === 0) {
+    <app-empty-state message="No tasks match your filters yet." />
+  } @else {
+    <div class="task-grid">
+      @for (task of filteredTasks(); track task.id) {
+        <app-card padding="1rem 1.1rem">
+          <div class="task-card-body">
+            <a class="card-link" [routerLink]="['/tasks', task.id]">
+              <header>
+                <h3>{{ task.title }}</h3>
+                <span class="status-chip" [class]="statusClass(task.status)">{{ task.status }}</span>
+              </header>
+              <p class="description">{{ task.description | stripHtml }}</p>
+            </a>
+            <footer>
+              <span class="deadline">{{ task.deadline }}</span>
+            </footer>
+          </div>
+        </app-card>
+      }
+    </div>
+  }
+}
