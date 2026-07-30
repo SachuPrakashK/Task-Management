@@ -62,7 +62,7 @@
             <footer>
               <span class="deadline">
                 <img class="calendar-icon" src="/images/calendar-circle.svg" alt="Deadline" />
-                {{ task.deadline }}
+                {{ task.deadline | date: 'dd-MM-yyyy' }}
               </span>
               <app-task-actions
                 [compact]="true"

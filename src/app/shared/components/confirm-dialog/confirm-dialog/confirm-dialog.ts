@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, ViewChild, effect, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostListener, ViewChild, effect, inject } from '@angular/core';
 import { ConfirmDialogService } from '../../../services/confirm-dialog';
 
 @Component({
@@ -7,6 +7,7 @@ import { ConfirmDialogService } from '../../../services/confirm-dialog';
   imports: [],
   templateUrl: './confirm-dialog.html',
   styleUrl: './confirm-dialog.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ConfirmDialog {
   protected readonly dialogService = inject(ConfirmDialogService);

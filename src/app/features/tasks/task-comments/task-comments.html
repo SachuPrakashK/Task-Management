@@ -1,1 +1,35 @@
-<p>task-comments works!</p>
+<app-card class="comments-section">
+    <h2>Comments <span class="count">({{ comments.length }})</span></h2>
+    <div class="new-comment">
+        <label for="comment-author" class="sr-only">Your name</label>
+        <input 
+            id="comment-author" 
+            type="text" 
+            placeholder="Your name" 
+            [ngModel]="author()"
+            (ngModelChange)="author.set($event)" 
+        />
+        <label for="comment-text" class="sr-only">Comment</label>
+        <textarea 
+            id="comment-text" 
+            rows="2"
+            placeholder="Write a comment..." 
+            [ngModel]="text()"
+            (ngModelChange)="text.set($event)"
+        >
+        </textarea>
+        <button type="button" class="btn btn-primary" (click)="addComment()">Post comment</button>
+    </div>
+
+    @if (comments.length === 0) {
+        <app-empty-state message="No comments yet — be the first to add one." [bordered]="false" />
+    } @else {
+        <ul class="comments-list">
+            @for (comment of comments; track comment.id) {
+                <li>
+                    <app-comment-node [comment]="comment" [depth]="0" (reply)="addReply($event)"></app-comment-node>
+                </li>
+            }
+        </ul>
+    }
+</app-card>

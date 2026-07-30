@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SnackbarService } from '../../../services/snackbar';
 
 @Component({
@@ -6,6 +6,7 @@ import { SnackbarService } from '../../../services/snackbar';
   imports: [],
   templateUrl: './snackbar.html',
   styleUrl: './snackbar.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Snackbar {
     protected readonly snackbarService = inject(SnackbarService);

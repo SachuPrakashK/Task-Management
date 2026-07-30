@@ -1,1 +1,58 @@
-<p>calendar-view works!</p>
+<section class="calendar-header">
+  <div>
+    <h1>Calendar</h1>
+    <p class="subtitle">Tasks plotted by deadline</p>
+  </div>
+  <div class="nav">
+    <button type="button" class="btn" aria-label="Previous month" (click)="prevMonth()">‹</button>
+    <button type="button" class="btn" (click)="today()">Today</button>
+    <button type="button" class="btn" aria-label="Next month" (click)="nextMonth()">›</button>
+  </div>
+</section>
+
+<h2 class="month-label">{{ monthLabel() }}</h2>
+
+@if (!taskService.loaded()) {
+  <app-spinner label="Loading calendar…" />
+} @else {
+  <app-card class="calendar-grid" padding="0" [clip]="true">
+    <div class="weekday-row">
+      @for (label of weekdayLabels; track label) {
+        <span class="weekday">{{ label }}</span>
+      }
+    </div>
+
+    @for (week of weeks(); track $index) {
+      <div class="week-row">
+        @for (day of week; track day.isoDate) {
+          <div
+            class="day-cell"
+            [class.outside-month]="!day.inCurrentMonth"
+            [class.is-today]="day.isToday"
+          >
+            <span class="day-number">{{ day.date.getDate() }}</span>
+            <div class="day-events">
+              @for (task of day.tasks; track task.id) {
+                <button
+                  type="button"
+                  class="event-pill"
+                  [class]="statusClass(task.status)"
+                  (click)="openTask(task.id)"
+                  [title]="task.title"
+                >
+                  {{ task.title }}
+                </button>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </app-card>
+
+  <div class="legend">
+    <span class="legend-item"><i class="dot status-pending"></i> Pending</span>
+    <span class="legend-item"><i class="dot status-in-progress"></i> In Progress</span>
+    <span class="legend-item"><i class="dot status-completed"></i> Completed</span>
+  </div>
+}

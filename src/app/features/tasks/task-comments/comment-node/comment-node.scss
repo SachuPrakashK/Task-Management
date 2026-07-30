@@ -1,0 +1,81 @@
+:host {
+    display: block;
+}
+
+.comment-node {
+    list-style: none;
+    margin-top: 0.75rem;
+    position: relative;
+}
+
+.comment-bubble {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.7rem 0.9rem;
+
+    header {
+        display: flex;
+        align-items: baseline;
+        gap: 0.5rem;
+        margin-bottom: 0.2rem;
+
+        strong {
+            font-size: 0.85rem;
+        }
+        time {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+    }
+
+    p {
+        margin: 0 0 0.4rem;
+        font-size: 0.88rem;
+        line-height: 1.45;
+    }
+}
+
+.reply-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 600;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.reply-form {
+    margin-top: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    max-width: 360px;
+
+    input,
+    textarea {
+        padding: 0.4rem 0.6rem;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        font-family: inherit;
+        font-size: 0.82rem;
+        resize: vertical;
+    }
+
+    .btn {
+        align-self: flex-start;
+        padding: 0.35rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+.reply-list {
+    margin: 0;
+    padding: 0;
+    border-left: 2px solid var(--border);
+}
