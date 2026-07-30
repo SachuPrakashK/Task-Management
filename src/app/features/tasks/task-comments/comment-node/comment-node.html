@@ -1,0 +1,44 @@
+<li class="comment-node" [style.marginLeft.px]="depth > 0 ? 20 : 0">
+  <div class="comment-bubble">
+    <header>
+      <strong>{{ comment.author }}</strong>
+      <time>{{ comment.createdAt | date: 'MMM d, y, h:mm a' }}</time>
+    </header>
+    <p>{{ comment.text }}</p>
+    <button type="button" class="reply-toggle" (click)="toggleReplying()">
+      {{ replying() ? 'Cancel' : 'Reply' }}
+    </button>
+
+    @if(replying()) {
+        <div class="reply-form">
+            <input 
+                type="text" 
+                placeholder="Your name" 
+                aria-label="Your name"
+                [ngModel]="replyAuthor()"
+                (ngModelChange)="replyAuthor.set($event)" 
+            />
+            <textarea  
+                rows="2"
+                placeholder="Write a reply..." 
+                aria-label="Write a reply"
+                [ngModel]="replyText()"
+                (ngModelChange)="replyText.set($event)"
+            >
+            </textarea>
+            <button type="button" class="btn btn-primary" (click)="submitReply()">Post reply</button>
+        </div>
+    }
+  </div>
+  @if (comment.replies.length) {
+    <ul class="reply-list">
+      @for (child of comment.replies; track child.id) {
+        <app-comment-node
+          [comment]="child"
+          [depth]="depth + 1"
+          (reply)="onDescendantReply($event)"
+        ></app-comment-node>
+      }
+    </ul>
+  }
+</li>

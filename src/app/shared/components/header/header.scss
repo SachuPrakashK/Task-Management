@@ -1,3 +1,7 @@
+:host {
+  display: block;
+}
+
 .app-header {
   display: flex;
   align-items: center;
@@ -28,8 +32,13 @@
     padding: 0.3rem 0;
     border-bottom: 2px solid transparent;
 
-    &.active { color: var(--text); border-color: var(--accent); }
-    &:hover { color: var(--text); }
+    &.active {
+      color: var(--text);
+      border-color: var(--accent);
+    }
+    &:hover {
+      color: var(--text);
+    }
   }
 
   .new-task-link {
@@ -42,14 +51,13 @@
 }
 
 @media (max-width: 640px) {
-  .app-header { 
-    flex-direction: column; 
-    gap: 0.75rem; 
-    align-items: flex-start; 
+  .app-header {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
   }
-
-  .app-nav { 
-    width: 100%; 
-    justify-content: space-between; 
+  .app-nav {
+    width: 100%;
+    justify-content: space-between;
   }
 }

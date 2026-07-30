@@ -10,10 +10,11 @@ import { ConfirmDialogService } from '../../../shared/services/confirm-dialog';
 import { TaskService } from '../../../core/services/task';
 import { statusClass } from '../../../shared/utils/status.util';
 import { pauseForFeedback } from '../../../shared/utils/pause-for-feedback.util';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-task-details',
-  imports: [RouterLink, Spinner, Card, EmptyState, TaskActions],
+  imports: [RouterLink, TaskComments, Spinner, Card, EmptyState, TaskActions, DatePipe],
   templateUrl: './task-details.html',
   styleUrl: './task-details.scss',
 })
@@ -37,7 +38,7 @@ export class TaskDetails implements OnInit {
   }
 
   editTask(): void {
-    this.router.navigate(['/tasks', this.taskId(), 'edit']);
+    this.router.navigate(['/task', this.taskId(), 'edit-task']);
   }
 
   async deleteTask(): Promise<void> {

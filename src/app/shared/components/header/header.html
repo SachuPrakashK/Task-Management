@@ -1,5 +1,5 @@
 <header class="app-header">
-  <span class="title">{{ title }}</span>
+  <span class="title"><span aria-hidden="true"></span>{{ title }}</span>
   <nav class="app-nav">
     <a routerLink="/tasks" routerLinkActive="active">Tasks</a>
     @if (!isNewTaskPage() && !isTaskListPage()) {

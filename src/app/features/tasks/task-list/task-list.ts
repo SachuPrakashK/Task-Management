@@ -12,11 +12,12 @@ import { SnackbarService } from '../../../shared/services/snackbar';
 import { ConfirmDialogService } from '../../../shared/services/confirm-dialog';
 import { pauseForFeedback } from '../../../shared/utils/pause-for-feedback.util';
 import { TaskActions } from '../../../shared/components/task-actions/task-actions';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
   selector: 'app-task-list',
-  imports: [RouterLink, StripHtmlPipe, Spinner, Card, EmptyState, TaskActions],
+  imports: [RouterLink, StripHtmlPipe, Spinner, Card, EmptyState, TaskActions, DatePipe],
   templateUrl: './task-list.html',
   styleUrl: './task-list.scss',
 })
