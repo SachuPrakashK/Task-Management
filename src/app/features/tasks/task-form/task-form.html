@@ -1,1 +1,102 @@
-<p>task-form works!</p>
+<section class="form-header">
+  <a routerLink="/tasks" class="back-link"><span><</span> Back to Tasks</a>
+  <h1>{{ isEditMode ? 'Edit Task' : 'New Task' }}</h1>
+</section>
+
+@if (loading()) {
+  <app-spinner label="Loading task…" />
+} @else {
+  <app-card class="task-form-card">
+    <form [formGroup]="form" (ngSubmit)="submit()" class="task-form">
+      <div class="field">
+        <label for="title">Title <span class="mandatory">*</span></label>
+        <input
+          id="title"
+          type="text"
+          formControlName="title"
+          placeholder="e.g. Set up CI pipeline"
+          [attr.maxlength]="maxTitleLength"
+        />
+        @if (form.controls.title.invalid && (form.controls.title.touched || submitted)) {
+          <p class="error">
+            @if (form.controls.title.errors?.['required']) {
+              Title is required.
+            } @else if (form.controls.title.errors?.['blank']) {
+              Title can't be just whitespace.
+            } @else if (form.controls.title.errors?.['minlength']) {
+              Title must be at least 3 characters.
+            } @else if (form.controls.title.errors?.['maxlength']) {
+              Title must be under {{ maxTitleLength }} characters.
+            }
+          </p>
+        }
+      </div>
+
+      <div class="field">
+        <label for="description">Description <span class="mandatory">*</span></label>
+        <div class="NgxEditor__Wrapper">
+          <ngx-editor-menu [editor]="editor"></ngx-editor-menu>
+          <ngx-editor
+            id="description"
+            formControlName="description"
+            [editor]="editor"
+            placeholder="Describe the task…"
+            aria-label="Task description"
+          ></ngx-editor>
+        </div>
+        @if (form.controls.description.invalid && (form.controls.description.touched || submitted)) {
+          <p class="error">
+            @if (form.controls.description.errors?.['required']) {
+              Description is required.
+            } @else if (form.controls.description.errors?.['blank']) {
+              Description can't be just whitespace.
+            } @else if (form.controls.description.errors?.['maxlength']) {
+              Description must be under {{ maxDescriptionLength }} characters.
+            }
+          </p>
+        }
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="deadline">Deadline <span class="mandatory">*</span></label>
+          <input id="deadline" type="date" formControlName="deadline" />
+          @if (form.controls.deadline.invalid && (form.controls.deadline.touched || submitted)) {
+            <p class="error">
+              @if (form.controls.deadline.errors?.['required']) {
+                Deadline is required.
+              } @else if (form.controls.deadline.errors?.['pastDate']) {
+                Deadline cannot be in the past.
+              }
+            </p>
+          }
+        </div>
+
+        <div class="field">
+          <label for="status">Status</label>
+          <select id="status" formControlName="status">
+            @for (status of statuses; track status) {
+              <option [value]="status">{{ status }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn" [disabled]="submitting()" (click)="cancel()">Cancel</button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="submitting()"
+          [attr.aria-label]="submitting() ? (isEditMode ? 'Saving changes…' : 'Creating task…') : null"
+        >
+          @if (submitting()) {
+            <app-spinner size="sm" [inline]="true" />
+          } @else {
+            {{ isEditMode ? 'Save changes' : 'Create task' }}
+          }
+        </button>
+      </div>
+    </form>
+  </app-card>
+}

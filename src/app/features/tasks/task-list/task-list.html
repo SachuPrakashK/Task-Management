@@ -3,6 +3,7 @@
     <h1>Tasks</h1>
     <p class="subtitle">{{ filteredTasks().length }} of {{ taskService.taskCount() }} tasks</p>
   </div>
+  <a routerLink="/task/add-task" class="btn btn-primary">+ New Task</a>
 </section>
 
 @if (!taskService.loaded()) {
@@ -49,7 +50,7 @@
       @for (task of filteredTasks(); track task.id) {
         <app-card padding="1rem 1.1rem">
           <div class="task-card-body">
-            <a class="card-link" [routerLink]="['/tasks', task.id]">
+            <a class="card-link" [routerLink]="['/task-details', task.id]">
               <header>
                 <h3>{{ task.title }}</h3>
                 <span class="status-chip" [class]="statusClass(task.status)">{{
@@ -63,6 +64,12 @@
                 <img class="calendar-icon" src="/images/calendar-circle.svg" alt="Deadline" />
                 {{ task.deadline }}
               </span>
+              <app-task-actions
+                [compact]="true"
+                [busy]="deletingId() === task.id"
+                (edit)="editTask(task.id)"
+                (delete)="deleteTask(task.id)"
+              />
             </footer>
           </div>
         </app-card>
