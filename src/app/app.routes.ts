@@ -12,12 +12,12 @@ export const routes: Routes = [
         import('./features/tasks/task-list/task-list').then((m) => m.TaskList),
   },
   {
-    path: 'tasks/add-task',
+    path: 'task/add-task',
     loadComponent: () => 
         import('./features/tasks/task-form/task-form').then((m) => m.TaskForm),
   },
   {
-    path: 'tasks/:id/edit-task',
+    path: 'task/:id/edit-task',
     loadComponent: () => 
         import('./features/tasks/task-form/task-form').then((m) => m.TaskForm),
   },

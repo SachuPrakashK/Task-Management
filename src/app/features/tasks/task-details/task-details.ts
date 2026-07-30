@@ -13,7 +13,7 @@ import { pauseForFeedback } from '../../../shared/utils/pause-for-feedback.util'
 
 @Component({
   selector: 'app-task-details',
-  imports: [RouterLink, TaskComments, Spinner, Card, EmptyState, TaskActions],
+  imports: [RouterLink, Spinner, Card, EmptyState, TaskActions],
   templateUrl: './task-details.html',
   styleUrl: './task-details.scss',
 })

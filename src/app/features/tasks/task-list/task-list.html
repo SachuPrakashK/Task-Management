@@ -3,7 +3,7 @@
     <h1>Tasks</h1>
     <p class="subtitle">{{ filteredTasks().length }} of {{ taskService.taskCount() }} tasks</p>
   </div>
-  <a routerLink="/tasks/add-task" class="btn btn-primary">+ New Task</a>
+  <a routerLink="/task/add-task" class="btn btn-primary">+ New Task</a>
 </section>
 
 @if (!taskService.loaded()) {

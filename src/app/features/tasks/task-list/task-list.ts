@@ -62,7 +62,7 @@ export class TaskList implements OnInit {
   }
 
   editTask(id: string): void {
-    this.router.navigate(['/tasks', id, 'edit-task']);
+    this.router.navigate(['/task', id, 'edit-task']);
   }
 
   async deleteTask(id: string): Promise<void> {
