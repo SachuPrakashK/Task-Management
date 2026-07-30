@@ -1,7 +1,9 @@
 <section class="list-header">
   <div>
     <h1>Tasks</h1>
-    <p class="subtitle">{{ filteredTasks().length }} of {{ taskService.taskCount() }} tasks</p>
+    <p class="pagination-info">
+      Showing {{ startItem() }} – {{ endItem() }} of {{ filteredTasks().length }} tasks
+    </p>
   </div>
   <a routerLink="/task/add-task" class="btn btn-primary">+ New Task</a>
 </section>
@@ -19,7 +21,7 @@
       [value]="searchTerm()"
       (input)="onSearch($any($event.target).value)"
     />
-    @if (!(searchTerm().trim() && filteredTasks().length === 0)) {
+    @if (!(searchTerm().trim() && paginatedTasks().length === 0)) {
       <div class="filter-chips">
         <button
           type="button"
@@ -43,11 +45,11 @@
     }
   </div>
 
-  @if (filteredTasks().length === 0) {
+  @if (paginatedTasks().length === 0) {
     <app-empty-state message="No tasks match your filters yet." />
   } @else {
     <div class="task-grid">
-      @for (task of filteredTasks(); track task.id) {
+      @for (task of paginatedTasks(); track task.id) {
         <app-card padding="1rem 1.1rem">
           <div class="task-card-body">
             <a class="card-link" [routerLink]="['/task-details', task.id]">
@@ -73,6 +75,29 @@
             </footer>
           </div>
         </app-card>
+      }
+    </div>
+    <div class="pagination-container">
+      @if (totalPages() > 1) {
+        <div class="pagination">
+          <button class="page-btn" (click)="previousPage()" [disabled]="currentPage() === 1">
+            <img class="arrow-icon" src="/images/left-arrow.svg" alt="Left arrow" />
+          </button>
+
+          @for (page of pages(); track page) {
+            <button
+              class="page-btn"
+              [class.active]="page === currentPage()"
+              (click)="goToPage(page)"
+            >
+              {{ page }}
+            </button>
+          }
+
+          <button class="page-btn" (click)="nextPage()" [disabled]="currentPage() === totalPages()">
+            <img class="arrow-icon" src="/images/right-arrow.svg" alt="Right arrow" />
+          </button>
+        </div>
       }
     </div>
   }

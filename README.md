@@ -1,24 +1,20 @@
 # Task Management Module
 
-A modern Task Management application built with **Angular 21** using
-Standalone Components, Angular Signals, Reactive Forms, lazy loading,
-and a feature-based architecture.
+A modern Task Management application built with Angular 21 using Standalone Components, Angular Signals, Reactive Forms, lazy loading, and a feature-based architecture.
 
-The project was developed as part of an Angular Developer Machine Test
-with a strong focus on:
+The project was developed as part of an Angular Developer Machine Test with a strong focus on:
 
-- Modern Angular architecture
-- Clean code principles
-- Scalability
-- Reusable components
-- Accessibility
-- Performance
-- Production-ready patterns
+Modern Angular architecture
+Clean code principles
+Scalability
+Reusable components
+Accessibility
+Performance
+Production-ready patterns
 
-Unlike a minimal CRUD implementation, this project includes
-threaded comments, reusable UI components, signal-based state
-management, structured error handling, persistent storage,
-unit testing, and several UX improvements.
+To provide a better user experience and demonstrate scalable list management, the application implements client-side pagination using Angular Signals and computed state. Pagination is seamlessly integrated with search, filtering, and deadline sorting, automatically updating the displayed results while minimizing DOM rendering. The implementation is designed to be easily replaceable with server-side pagination in future API-based integrations.
+
+Unlike a minimal CRUD implementation, this project includes threaded comments, reusable UI components, signal-based state management, structured error handling, persistent storage, client-side pagination, unit testing, and several UX improvements.
 
 ## Setup
 
@@ -211,6 +207,23 @@ up a second and third time:
   copies (list card footer, detail page header) before being merged into one
   component with a `compact` input for the tighter card-footer sizing.
 
+### Pagination
+
+The Task List implements **client-side pagination** using Angular Signals and `computed()` state.
+
+Pagination is applied after filtering and sorting, ensuring users always navigate through the currently visible result set.
+
+The implementation includes:
+
+- Signal-based current page management
+- Computed page calculations
+- Automatic page reset when search or filters change
+- Previous/Next navigation
+- Direct page navigation
+- "Showing X–Y of Z tasks" summary
+
+This approach keeps pagination reactive, lightweight, and independent of the data source, making it easy to replace with server-side pagination in the future.
+
 ### Performance Optimizations
 
 - Angular Signals for fine-grained reactivity
@@ -219,6 +232,7 @@ up a second and third time:
 - Cached search indexing
 - Shared reusable components
 - `ChangeDetectionStrategy.OnPush` for presentation and signal-driven components to minimize unnecessary change detection cycles
+- **Client-side pagination to limit DOM rendering and improve list performance**
 
 ### Performance: search indexing
 
@@ -313,6 +327,13 @@ The task form uses Reactive Forms with:
   the calendar's day-level granularity.
 - "Delete task" is a hard delete with a confirm dialog — no soft-delete/undo,
   since none was specified.
+
+### Future Improvements
+
+- Replace client-side pagination with server-side pagination for large datasets
+- Cursor-based pagination for API integration
+- User-configurable page size
+- Infinite scrolling as an alternative navigation pattern
 
 ## Testing the app
 
