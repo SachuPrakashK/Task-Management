@@ -1,0 +1,84 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --border: #e3e6ef;
+  --text: #1c2130;
+  --text-muted: #6b7080;
+  --accent: #3452e1;
+  --accent-ink: #ffffff;
+  --status-pending: #b8860b;
+  --status-pending-bg: #fdf3dc;
+  --status-progress: #3452e1;
+  --status-progress-bg: #e8ecfd;
+  --status-completed: #16855a;
+  --status-completed-bg: #e2f6ec;
+  --danger: #d1403f;
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(28, 33, 48, 0.06), 0 4px 14px rgba(28, 33, 48, 0.05);
+  --font-ui: "Inter", -apple-system, "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+
+  &.status-pending {
+    color: var(--status-pending);
+    background: var(--status-pending-bg);
+  }
+  &.status-in-progress {
+    color: var(--status-progress);
+    background: var(--status-progress-bg);
+  }
+  &.status-completed {
+    color: var(--status-completed);
+    background: var(--status-completed-bg);
+  }
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

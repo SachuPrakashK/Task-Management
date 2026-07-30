@@ -1,0 +1,16 @@
+<div class="task-actions" [class.compact]="compact">
+  <button type="button" class="btn" [disabled]="busy" (click)="onEdit($event)">Edit</button>
+  <button
+    type="button"
+    class="btn btn-danger"
+    [disabled]="busy"
+    [attr.aria-label]="busy ? 'Deleting task…' : 'Delete task'"
+    (click)="onDelete($event)"
+  >
+    @if (busy) {
+      <app-spinner size="sm" [inline]="true" />
+    } @else {
+      Delete
+    }
+  </button>
+</div>

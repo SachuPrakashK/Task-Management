@@ -1,0 +1,13 @@
+:host {
+  display: block;
+}
+
+.task-actions {
+  display: flex;
+  gap: 0.5rem;
+
+  &.compact .btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.78rem;
+  }
+}

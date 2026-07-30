@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1",
+    "title": "Set up CI pipeline",
+    "description": "<p>Configure <strong>GitHub Actions</strong> to run lint, unit tests, and build on every pull request.</p>",
+    "deadline": "2026-08-05",
+    "status": "In Progress"
+  },
+  {
+    "id": "2",
+    "title": "Design task detail page",
+    "description": "<p>Create wireframes for the task detail view, including the comments section and status badge.</p><ul><li>Mobile layout</li><li>Desktop layout</li></ul>",
+    "deadline": "2026-08-01",
+    "status": "Completed"
+  },
+  {
+    "id": "3",
+    "title": "Write onboarding docs",
+    "description": "<p>Draft the README covering setup, architecture, and assumptions for new contributors.</p>",
+    "deadline": "2026-08-12",
+    "status": "Pending"
+  },
+  {
+    "id": "4",
+    "title": "Fix Safari flexbox bug",
+    "description": "<p>The task list card footer collapses on <em>Safari 17</em>. Needs a flex-basis fix.</p>",
+    "deadline": "2026-07-31",
+    "status": "In Progress"
+  },
+  {
+    "id": "5",
+    "title": "Plan sprint retro",
+    "description": "<p>Book a room and prepare discussion prompts for the retro.</p>",
+    "deadline": "2026-08-08",
+    "status": "Pending"
+  }
+]

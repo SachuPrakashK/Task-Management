@@ -1,0 +1,72 @@
+<section class="list-header">
+  <div>
+    <h1>Tasks</h1>
+    <p class="subtitle">{{ filteredTasks().length }} of {{ taskService.taskCount() }} tasks</p>
+  </div>
+</section>
+
+@if (!taskService.loaded()) {
+  <app-spinner label="Loading tasks…" />
+} @else {
+  <div class="toolbar">
+    <label for="task-search" class="sr-only">Search tasks by title</label>
+    <input
+      id="task-search"
+      type="search"
+      placeholder="Search by title…"
+      class="search-input"
+      [value]="searchTerm()"
+      (input)="onSearch($any($event.target).value)"
+    />
+    @if (!(searchTerm().trim() && filteredTasks().length === 0)) {
+      <div class="filter-chips">
+        <button
+          type="button"
+          class="chip"
+          [class.active]="activeFilter() === 'All'"
+          (click)="setFilter('All')"
+        >
+          All
+        </button>
+        @for (status of statuses; track status) {
+          <button
+            type="button"
+            class="chip"
+            [class.active]="activeFilter() === status"
+            (click)="setFilter(status)"
+          >
+            {{ status }}
+          </button>
+        }
+      </div>
+    }
+  </div>
+
+  @if (filteredTasks().length === 0) {
+    <app-empty-state message="No tasks match your filters yet." />
+  } @else {
+    <div class="task-grid">
+      @for (task of filteredTasks(); track task.id) {
+        <app-card padding="1rem 1.1rem">
+          <div class="task-card-body">
+            <a class="card-link" [routerLink]="['/tasks', task.id]">
+              <header>
+                <h3>{{ task.title }}</h3>
+                <span class="status-chip" [class]="statusClass(task.status)">{{
+                  task.status
+                }}</span>
+              </header>
+              <p class="description">{{ task.description | stripHtml }}</p>
+            </a>
+            <footer>
+              <span class="deadline">
+                <img class="calendar-icon" src="/images/calendar-circle.svg" alt="Deadline" />
+                {{ task.deadline }}
+              </span>
+            </footer>
+          </div>
+        </app-card>
+      }
+    </div>
+  }
+}
