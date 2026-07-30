@@ -1,12 +1,47 @@
 <section class="list-header">
   <div>
     <h1>Tasks</h1>
+    <p class="subtitle">{{ filteredTasks().length }} of {{ taskService.taskCount() }} tasks</p>
   </div>
 </section>
 
 @if (!taskService.loaded()) {
   <app-spinner label="Loading tasks…" />
 } @else {
+  <div class="toolbar">
+    <label for="task-search" class="sr-only">Search tasks by title</label>
+    <input
+      id="task-search"
+      type="search"
+      placeholder="Search by title…"
+      class="search-input"
+      [value]="searchTerm()"
+      (input)="onSearch($any($event.target).value)"
+    />
+    @if (!(searchTerm().trim() && filteredTasks().length === 0)) {
+      <div class="filter-chips">
+        <button
+          type="button"
+          class="chip"
+          [class.active]="activeFilter() === 'All'"
+          (click)="setFilter('All')"
+        >
+          All
+        </button>
+        @for (status of statuses; track status) {
+          <button
+            type="button"
+            class="chip"
+            [class.active]="activeFilter() === status"
+            (click)="setFilter(status)"
+          >
+            {{ status }}
+          </button>
+        }
+      </div>
+    }
+  </div>
+
   @if (filteredTasks().length === 0) {
     <app-empty-state message="No tasks match your filters yet." />
   } @else {

@@ -42,4 +42,12 @@ export class TaskList implements OnInit {
     this.taskService.loadTasks();
   }
 
+  setFilter(status: TaskStatus | 'All'): void {
+    this.activeFilter.set(status);
+  }
+
+  onSearch(value: string): void {
+    this.searchTerm.set(value);
+  }
+
 }
