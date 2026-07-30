@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
 import { TaskService } from '../../../core/services/task';
 import { Router, RouterLink } from '@angular/router';
 import { TASK_STATUSES, TaskStatus } from '../../../core/models/task.model';
@@ -20,6 +20,7 @@ import { DatePipe } from '@angular/common';
   imports: [RouterLink, StripHtmlPipe, Spinner, Card, EmptyState, TaskActions, DatePipe],
   templateUrl: './task-list.html',
   styleUrl: './task-list.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskList implements OnInit {
   protected readonly taskService = inject(TaskService);

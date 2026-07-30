@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output, signal } from '@angular/core';
 import { TaskComment } from '../../../../core/models/comment.model';
 import { SnackbarService } from '../../../../shared/services/snackbar';
 import { DatePipe } from '@angular/common';
@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
   imports: [FormsModule, DatePipe],
   templateUrl: './comment-node.html',
   styleUrl: './comment-node.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CommentNode {
   @Input({ required: true }) comment!: TaskComment;

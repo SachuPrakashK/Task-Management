@@ -1,4 +1,4 @@
-import { Component, inject, Input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input, signal } from '@angular/core';
 import { Card } from '../../../shared/components/card/card/card';
 import { FormsModule } from '@angular/forms';
 import { CommentService } from '../../../core/services/comment';
@@ -11,6 +11,7 @@ import { CommentNode } from './comment-node/comment-node';
   imports: [Card, FormsModule, EmptyState, CommentNode],
   templateUrl: './task-comments.html',
   styleUrl: './task-comments.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskComments {
   @Input({ required: true }) taskId!: string;

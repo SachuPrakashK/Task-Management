@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
 import { TaskActions } from '../../../shared/components/task-actions/task-actions';
 import { EmptyState } from '../../../shared/components/empty-state/empty-state/empty-state';
 import { Card } from '../../../shared/components/card/card/card';
@@ -17,6 +17,7 @@ import { DatePipe } from '@angular/common';
   imports: [RouterLink, TaskComments, Spinner, Card, EmptyState, TaskActions, DatePipe],
   templateUrl: './task-details.html',
   styleUrl: './task-details.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskDetails implements OnInit {
   private readonly route = inject(ActivatedRoute);

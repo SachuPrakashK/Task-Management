@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Spinner } from '../spinner/spinner';
 
 @Component({
@@ -7,6 +7,7 @@ import { Spinner } from '../spinner/spinner';
   imports: [Spinner],
   templateUrl: './task-actions.html',
   styleUrl: './task-actions.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskActions {
   @Input() busy = false;

@@ -5,7 +5,7 @@
     [disabled]="busy" 
     (click)="onEdit($event)"
   >
-    Edit
+    <img class="edit-icon" title="Edit" src="/images/edit.svg" alt="Edit task" />
   </button>
   <button
     type="button"
@@ -17,7 +17,7 @@
     @if (busy) {
       <app-spinner size="sm" [inline]="true" />
     } @else {
-      Delete
+      <img class="delete-icon" title="Delete" src="/images/delete.svg" alt="Delete task" />
     }
   </button>
 </div>
