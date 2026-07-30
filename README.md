@@ -293,7 +293,7 @@ The task form uses Reactive Forms with:
 - **Confirm modal** — `ConfirmDialogService.confirm(options)` returns a
   `Promise<boolean>`, replacing `window.confirm()` for both delete
   confirmations (task list, task details).
-- **Header** — the "+ New Task" link hides itself while `/tasks/new` is the
+- **Header** — the "+ New Task" link hides itself while `/task/add-task` is the
   active route (tracked via a signal derived from `Router` navigation
   events).
 
