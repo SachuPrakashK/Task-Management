@@ -42,6 +42,51 @@ a {
   text-decoration: none;
 }
 
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition:
+    transform 0.08s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+
+  &:hover {
+    border-color: var(--accent);
+  }
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+
+  &:hover {
+    box-shadow: 0 4px 14px rgba(52, 82, 225, 0.35);
+  }
+}
+
+.btn-danger {
+  color: var(--danger);
+  border-color: var(--danger);
+  background: transparent;
+}
+
 .status-chip {
   display: inline-flex;
   align-items: center;

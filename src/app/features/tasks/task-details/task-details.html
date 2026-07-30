@@ -1,1 +1,22 @@
-<p>task-details works!</p>
+<a routerLink="/tasks" class="back-link">← Back to tasks</a>
+
+@if (!taskService.loaded()) {
+  <app-spinner label="Loading task…" />
+} @else if (task(); as t) {
+  <app-card class="detail-card">
+    <header>
+      <div>
+        <h1>{{ t.title }}</h1>
+        <span class="status-chip" [class]="statusClass(t.status)">{{ t.status }}</span>
+      </div>
+      <app-task-actions [busy]="deleting()" (edit)="editTask()" (delete)="deleteTask()" />
+    </header>
+
+    <p class="deadline"><img class="calendar-icon" src="/images/calendar-circle.svg" alt="Deadline" /> Due {{ t.deadline }}</p>
+
+    <div class="description" [innerHTML]="t.description"></div>
+  </app-card>
+
+} @else {
+  <app-empty-state message="This task doesn't exist — it may have been deleted." />
+}

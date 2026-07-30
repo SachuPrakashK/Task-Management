@@ -2,5 +2,8 @@
   <span class="title">{{ title }}</span>
   <nav class="app-nav">
     <a routerLink="/tasks" routerLinkActive="active">Tasks</a>
+    @if (!isNewTaskPage() && !isTaskListPage()) {
+      <a routerLink="/tasks/new" class="new-task-link">+ New Task</a>
+    }
   </nav>
 </header>

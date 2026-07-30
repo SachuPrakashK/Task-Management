@@ -1,1 +1,28 @@
-<p>confirm-dialog works!</p>
+@if (dialogService.request(); as req) {
+  <div class="modal-backdrop" (click)="onBackdropClick()">
+    <div
+      class="modal-card"
+      role="alertdialog"
+      aria-modal="true"
+      aria-labelledby="confirm-dialog-title"
+      aria-describedby="confirm-dialog-message"
+      (click)="$event.stopPropagation()"
+    >
+      <h2 id="confirm-dialog-title">{{ req.title }}</h2>
+      <p id="confirm-dialog-message">{{ req.message }}</p>
+      <div class="modal-actions">
+        <button #cancelBtn type="button" class="btn" (click)="onCancel()">{{ req.cancelLabel }}</button>
+        <button
+          #confirmBtn
+          type="button"
+          class="btn"
+          [class.btn-danger]="req.danger"
+          [class.btn-primary]="!req.danger"
+          (click)="onConfirm()"
+        >
+          {{ req.confirmLabel }}
+        </button>
+      </div>
+    </div>
+  </div>
+}
