@@ -25,7 +25,7 @@ export class Header {
 
   protected readonly isNewTaskPage = computed(
     () => this.currentUrl()
-    .startsWith('/tasks/add-task')
+    .startsWith('/task/add-task')
   );
 
   protected readonly isTaskListPage = computed(
