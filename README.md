@@ -4,13 +4,13 @@ A modern Task Management application built with Angular 21 using Standalone Comp
 
 The project was developed as part of an Angular Developer Machine Test with a strong focus on:
 
-Modern Angular architecture
-Clean code principles
-Scalability
-Reusable components
-Accessibility
-Performance
-Production-ready patterns
+- Modern Angular architecture
+- Clean code principles
+- Scalability
+- Reusable components
+- Accessibility
+- Performance
+- Production-ready patterns
 
 To provide a better user experience and demonstrate scalable list management, the application implements client-side pagination using Angular Signals and computed state. Pagination is seamlessly integrated with search, filtering, and deadline sorting, automatically updating the displayed results while minimizing DOM rendering. The implementation is designed to be easily replaceable with server-side pagination in future API-based integrations.
 
