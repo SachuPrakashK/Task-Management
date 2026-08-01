@@ -30,7 +30,7 @@ export class TaskComments {
     const authorName = this.author().trim();
     const commentText = this.text().trim();
 
-    if (!authorName && !commentText) {
+    if (!authorName || !commentText) {
       this.snackbar.error('Please enter your name and a comment.');
       return;
     }

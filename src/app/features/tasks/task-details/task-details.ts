@@ -10,11 +10,10 @@ import { ConfirmDialogService } from '../../../shared/services/confirm-dialog';
 import { TaskService } from '../../../core/services/task';
 import { statusClass } from '../../../shared/utils/status.util';
 import { pauseForFeedback } from '../../../shared/utils/pause-for-feedback.util';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-task-details',
-  imports: [RouterLink, TaskComments, Spinner, Card, EmptyState, TaskActions, DatePipe],
+  imports: [RouterLink, TaskComments, Spinner, Card, EmptyState, TaskActions],
   templateUrl: './task-details.html',
   styleUrl: './task-details.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
