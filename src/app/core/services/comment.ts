@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { environment } from '../../../environments/environment.production';
+import { environment } from '../../../environments/environment';
 import { StorageService } from '../../shared/services/storage';
 import { TaskComment } from '../models/comment.model';
 import { generateId } from '../../shared/utils/id.util';

@@ -9,7 +9,7 @@ import { TaskService } from '../../../core/services/task';
 import { SnackbarService } from '../../../shared/services/snackbar';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Editor, NgxEditorComponent, NgxEditorMenuComponent } from 'ngx-editor';
+import { Editor, NgxEditorComponent, NgxEditorMenuComponent, Toolbar } from 'ngx-editor';
 import { notBlankValidator } from '../../../shared/validators/not-blank.validator';
 import { richTextValidator } from '../../../shared/validators/rich-text-length.validator';
 import { notPastDateValidator } from '../../../shared/validators/not-past-date.validator';
@@ -19,7 +19,14 @@ import { Card } from '../../../shared/components/card/card/card';
 
 @Component({
   selector: 'app-task-form',
-  imports: [ReactiveFormsModule, RouterLink, Card, Spinner, NgxEditorComponent, NgxEditorMenuComponent],
+  imports: [
+    ReactiveFormsModule,
+    RouterLink,
+    Card,
+    Spinner,
+    NgxEditorComponent,
+    NgxEditorMenuComponent,
+  ],
   templateUrl: './task-form.html',
   styleUrl: './task-form.scss',
 })
@@ -38,6 +45,12 @@ export class TaskForm {
   protected submitted = false;
   protected readonly submitting = signal(false);
   private patched = false;
+
+  protected readonly toolbar: Toolbar = [
+    ['bold', 'italic'], 
+    ['underline'], 
+    ['bullet_list']
+  ];
 
   protected readonly form = this.fb.nonNullable.group({
     title: [
